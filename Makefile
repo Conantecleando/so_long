@@ -6,7 +6,7 @@
 #    By: daroldan <daroldan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/31 19:39:50 by daroldan          #+#    #+#              #
-#    Updated: 2024/05/31 19:57:09 by daroldan         ###   ########.fr        #
+#    Updated: 2024/06/04 18:53:21 by daroldan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,10 @@ RM		= rm -f
 
 #Directories
 LIBFT	= ./LIBFT/libft.a
+
+#Library
+
+LIB		= -ldl -lglfw -pthread 
 
 #Files
 FILES = 
