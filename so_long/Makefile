@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daroldan <daroldan@student.42.fr>          +#+  +:+       +#+         #
+#    By: davidrol <davidrol@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/31 19:39:50 by daroldan          #+#    #+#              #
-#    Updated: 2024/05/31 19:57:09 by daroldan         ###   ########.fr        #
+#    Updated: 2024/06/10 23:37:48 by davidrol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,15 @@ NAME	= so_long
 #Compiler and CFlags
 CC		= clang 
 CFLAGS	= -Wall -Werror -Wextra
-RM		= rm -f
+RM		= rm -rf
+MLX42FLAGS	= -ldl -lglfw -pthread -lm
 
 #Directories
 LIBFT	= ./LIBFT/libft.a
+MLX42	= ./MLX42/build/libmlx42.a
 
 #Files
-FILES = 
+FILES = main.c
 
 FILES_BONUS = 	
 
@@ -30,11 +32,12 @@ OBJ = $(FILES:.c=.o)
 OBJ_BONUS = $(FILES_BONUS:.c=.o)
 
 all: $(NAME)
-	@echo 🧔‍♀️ "Contructor"
+	@echo 🧔‍♀️ "Constructor"
 
 $(NAME): $(OBJ)
 	make -C ./LIBFT
-	$(CC) $(CFLAGS) -c $(FILES)
+	make -C ./MLX42/build
+	$(CC) $(CFLAGS) $(OBJ) $(MLX42FLAGS) $(LIBFT) $(MLX42) -o $(NAME)
 
 bonus:
 	$(CC) $(CFLAGS) -c $(FILES_BONUS)
@@ -43,6 +46,7 @@ bonus:
 clean:
 	@$(RM) $(OBJ) $(OBJ_BONUS)
 	@make clean -C ./LIBFT
+	@make clean -C ./MLX42/build
 	@echo 🧑"clean"
 
 fclean: clean
@@ -52,4 +56,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus ftprint
+.PHONY: all clean fclean re bonus 
